@@ -26,7 +26,7 @@ function selectScenario(scenario) {
 
 function calculateMortalityRisk() {
   const beta = [0, .29266961, .63127178, 1.0919233, 2.010895]; // Beta coefficients for excellent, very good, good, fair, poor
-  const s0 = [.9999999, .9949034, .9844462, .9792454]; // Survival probabilities at timepoints 0, 5, 12, 15
+  const s0 = [.9999999, .96281503, .89708843, .87179276]; // Survival probabilities at timepoints 0, 5, 12, 15
   const timePoints = [0, 5, 12, 15];
   const logHR = beta.reduce((acc, curr, index) => acc + (curr * scenarioVector[index]), 0);
   const f0 = s0.map(s => (1 - s) * 100);

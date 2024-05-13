@@ -1,1 +1,2 @@
-# quickdeploy
+```
+webApp > master > assets > js > script.js

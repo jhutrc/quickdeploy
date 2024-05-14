@@ -20,9 +20,10 @@ function selectScenario(scenario) {
       scenarioVector = [0, 0, 0, 0, 1];
       break;
     default:
-      scenarioVector = [1, 0, 0, 0, 0];
+      scenarioVector = [0, 0, 1, 0, 0]; // Set default to 'good'
   }
 }
+
 
 function calculateMortalityRisk() {
   const beta = [0, .29266961, .63127178, 1.0919233, 2.010895]; // Beta coefficients for excellent, very good, good, fair, poor
@@ -32,6 +33,40 @@ function calculateMortalityRisk() {
   const f0 = s0.map(s => (1 - s) * 100);
   const f1 = f0.map((f, index) => f * Math.exp(logHR));
   const riskResults = timePoints.map((time, index) => `Risk at ${time} years: ${f1[index].toFixed(2)}%`);
+
+  // Draw graph
+  const ctx = document.getElementById('mortality-risk-graph').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: timePoints.map(String),
+      datasets: [{
+        label: 'Mortality Risk',
+        data: f1,
+        steppedLine: 'before',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Timepoints (years)'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Mortality Risk (%)'
+          }
+        }
+      }
+    }
+  });
+
   document.getElementById("mortality-risk-results").innerText = riskResults.join('\n');
 }
 

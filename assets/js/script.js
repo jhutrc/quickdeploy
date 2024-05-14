@@ -45,10 +45,12 @@ function calculateMortalityRisk() {
         steppedLine: 'before',
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderWidth: 1
+        borderWidth: 3 // Increased line width
       }]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         x: {
           title: {
@@ -61,8 +63,12 @@ function calculateMortalityRisk() {
             display: true,
             text: 'Mortality Risk (%)'
           },
-          suggestedMin: 0,
-          suggestedMax: 80
+          ticks: {
+            min: 0,
+            max: 80,
+            stepSize: 20,
+            fontSize: 14 // Increased font size
+          }
         }
       }
     }

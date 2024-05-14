@@ -24,7 +24,6 @@ function selectScenario(scenario) {
   }
 }
 
-
 function calculateMortalityRisk() {
   const beta = [0, .29266961, .63127178, 1.0919233, 2.010895]; // Beta coefficients for excellent, very good, good, fair, poor
   const s0 = [.9999999, .96281503, .91558171, .87179276, .82403985]; // Survival probabilities at timepoints 0, 5, 10, 15, 20
@@ -61,7 +60,9 @@ function calculateMortalityRisk() {
           title: {
             display: true,
             text: 'Mortality Risk (%)'
-          }
+          },
+          suggestedMin: 0,
+          suggestedMax: 80
         }
       }
     }

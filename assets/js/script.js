@@ -86,7 +86,10 @@ function calculateMortalityRisk(scenario) {
   document.getElementById("mortality-risk-results").innerText = riskResults.join('\n');
 }
 
-// Attach event listener to the dropdown to update the scenarioVector
 document.getElementById("scenario-dropdown").addEventListener("change", function() {
   selectScenario(this.value);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  selectScenario('excellent');
 });

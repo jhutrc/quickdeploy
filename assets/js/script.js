@@ -33,6 +33,15 @@ function calculateMortalityRisk() {
   const f1 = f0.map((f, index) => f * Math.exp(logHR));
   const riskResults = timePoints.map((time, index) => `Risk at ${time} years: ${f1[index].toFixed(2)}%`);
 
+  // Color schemes for different scenarios
+  const colorSchemes = {
+    'excellent': 'rgba(0, 191, 255, 1)',    // Bright blue
+    'verygood': 'rgba(255, 0, 255, 1)',      // Magenta
+    'good': 'rgba(106, 168, 79, 1)',         // Cabbage green
+    'fair': 'rgba(255, 255, 0, 1)',          // Lemon yellow
+    'poor': 'rgba(128, 0, 128, 1)'           // Purple
+  };
+
   // Draw graph
   const ctx = document.getElementById('mortality-risk-graph').getContext('2d');
   const chart = new Chart(ctx, {
@@ -43,8 +52,8 @@ function calculateMortalityRisk() {
         label: 'Mortality Risk',
         data: f1,
         steppedLine: 'before',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: colorSchemes[this.value], // Set color based on scenario
+        backgroundColor: colorSchemes[this.value].replace('1)', '0.2)'), // Use slightly transparent color for fill
         borderWidth: 3 // Increased line width
       }]
     },
@@ -81,3 +90,4 @@ document.getElementById("calculate-risk-button").addEventListener("click", calcu
 document.getElementById("scenario-dropdown").addEventListener("change", function() {
   selectScenario(this.value);
 });
+

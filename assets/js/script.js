@@ -64,8 +64,8 @@ function calculateMortalityRisk() {
             text: 'Mortality Risk (%)'
           },
           ticks: {
-            min: 0,
-            max: 80,
+            suggestedMin: 0,
+            suggestedMax: 80,
             stepSize: 20,
             fontSize: 14 // Increased font size
           }

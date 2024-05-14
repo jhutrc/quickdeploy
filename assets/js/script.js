@@ -5,25 +5,28 @@ var scenarioVector = [0, 0, 1, 0, 0]; // Default to 'good' scenario
 function selectScenario(scenario) {
   switch (scenario) {
     case 'excellent':
-      scenarioVector = [1, 0, 0, 0, 0]; // Change scenarioVector for 'excellent' scenario
+      scenarioVector = [1, 0, 0, 0, 0];
       break;
     case 'verygood':
-      scenarioVector = [0, 1, 0, 0, 0]; // Change scenarioVector for 'verygood' scenario
+      scenarioVector = [0, 1, 0, 0, 0];
       break;
     case 'good':
-      scenarioVector = [0, 0, 1, 0, 0]; // Change scenarioVector for 'good' scenario
+      scenarioVector = [0, 0, 1, 0, 0];
       break;
     case 'fair':
-      scenarioVector = [0, 0, 0, 1, 0]; // Change scenarioVector for 'fair' scenario
+      scenarioVector = [0, 0, 0, 1, 0];
       break;
     case 'poor':
-      scenarioVector = [0, 0, 0, 0, 1]; // Change scenarioVector for 'poor' scenario
+      scenarioVector = [0, 0, 0, 0, 1];
       break;
     default:
       scenarioVector = [0, 0, 1, 0, 0]; // Set default to 'good'
   }
-  calculateMortalityRisk(scenario); // Pass selected scenario to calculateMortalityRisk
+
+  //was original "scenario" rather than "scenario vector"; thus stuck at "excellent"?
+  calculateMortalityRisk(scenarioVector); // Pass selected scenario vector to calculateMortalityRisk
 }
+
 
 function calculateMortalityRisk(scenario) {
   const beta = [0, .29266961, .63127178, 1.0919233, 2.010895]; // Beta coefficients for excellent, very good, good, fair, poor

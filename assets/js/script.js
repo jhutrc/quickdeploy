@@ -1,6 +1,6 @@
 'use strict';
 
-var scenarioVector = [0, 0, 1, 0, 0]; // Default to 'good' scenario
+var scenarioVector = [1, 0, 0, 0, 0]; // Default to excellent self-rated health scenario
 
 function selectScenario(scenario) {
   switch (scenario) {
@@ -22,11 +22,8 @@ function selectScenario(scenario) {
     default:
       scenarioVector = [0, 0, 1, 0, 0]; // Set default to 'good'
   }
-
-  //was original "scenario" rather than "scenario vector"; thus stuck at "excellent"?
-  calculateMortalityRisk(scenarioVector); // Pass selected scenario vector to calculateMortalityRisk
+  calculateMortalityRisk(scenario); // Pass selected scenario to calculateMortalityRisk
 }
-
 
 function calculateMortalityRisk(scenario) {
   const beta = [0, .29266961, .63127178, 1.0919233, 2.010895]; // Beta coefficients for excellent, very good, good, fair, poor
@@ -57,7 +54,7 @@ function calculateMortalityRisk(scenario) {
         label: 'Mortality Risk',
         data: f1,
         steppedLine: 'before',
-        borderColor: colorSchemes[scenario], // Use color based on selected scenario
+        borderColor: colorSchemes[scenario],
         backgroundColor: colorSchemes[scenario].replace('1)', '0.2)'),
         borderWidth: 3
       }]

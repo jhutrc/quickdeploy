@@ -28,6 +28,34 @@
     <script src="assets/js/script.js"></script>
     <!-- juxtaposed nonparametric with semiparametric calculator for ease of comparison -->
     <img src="https://jhustata.github.io/intermediate/_images/nonpara.png" alt="Nonparametric Image">
+    <!-- estimates for excellent are not being generated and we hope this is a fix!! -->
+    <div>
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar', // or any other chart type
+    data: {
+      labels: ['Excellent', 'Good', 'Average', 'Poor'],
+      datasets: [{
+        label: 'Mortality Risk',
+        data: [/* your data here */],
+        backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+        borderColor: ['rgba(75, 192, 192, 1)'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 
 </body>
 
